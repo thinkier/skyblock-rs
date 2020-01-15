@@ -16,6 +16,3 @@ base64="*"
 
 [dependencies.futures]
 version="0.3"
-
-[dependencies.minecraft]
-git="https://github.com/thanatos/libminecraft"

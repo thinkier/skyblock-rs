@@ -1,2 +1,4 @@
 index:
   build: ./examples/index
+  environment:
+    - API_KEY

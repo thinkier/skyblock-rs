@@ -2,4 +2,4 @@
 Cargo.lock
 .idea/
 *.iml
-testenv.sh
+env.sh
