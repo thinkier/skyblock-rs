@@ -23,7 +23,7 @@ impl fmt::Display for ApiError {
 
 impl Error for ApiError {}
 
-struct Key<'a> {
+pub(crate) struct Key<'a> {
 	key: &'a str,
 	window: SystemTime,
 	uses: usize,
@@ -43,7 +43,7 @@ impl<'a> Key<'a> {
 	}
 
 	pub fn timeout(&self) -> bool {
-		self.window.elapsed().unwrap_or(Duration::from_secs(0)).as_secs() > self.window_size
+		self.window.elapsed().unwrap_or(Duration::from_secs(0)).as_secs() >= self.window_size
 	}
 
 	pub fn can_use(&mut self) -> bool {
