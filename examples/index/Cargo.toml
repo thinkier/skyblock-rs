@@ -1,21 +1,14 @@
 [package]
-name = "skyblock-rs"
+name = "index"
 version = "0.1.0"
 authors = ["thinkier <26728734+thinkier@users.noreply.github.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[dependencies.skyblock-rs]
+git="https://github.com/thinkier/skyblock-rs"
+
 [dependencies]
-hyper="0.13"
-hyper-tls="0.4"
-serde="*"
 serde_json="*"
-serde_derive="*"
-base64="*"
-
-[dependencies.futures]
-version="0.3"
-
-[dependencies.minecraft]
-git="https://github.com/thanatos/libminecraft"
+tokio = { version = "0.2", features = ["full"] }
