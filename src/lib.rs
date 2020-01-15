@@ -8,8 +8,6 @@ extern crate futures;
 extern crate hyper;
 extern crate hyper_tls;
 
-extern crate minecraft as mcnbt;
-
 mod http;
 #[cfg(test)]
 mod tests;
