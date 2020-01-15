@@ -27,12 +27,12 @@ struct Key<'a> {
 	key: &'a str,
 	window: SystemTime,
 	uses: usize,
-	window_size: u128,
+	window_size: u64,
 	window_limit: usize,
 }
 
 impl<'a> Key<'a> {
-	pub fn new(key: &'a str, window_limit: usize, window_size: u128) -> Key {
+	pub fn new(key: &'a str, window_limit: usize, window_size: u64) -> Key {
 		Key {
 			key,
 			window: SystemTime::now(),
@@ -43,7 +43,7 @@ impl<'a> Key<'a> {
 	}
 
 	pub fn timeout(&self) -> bool {
-		self.window.elapsed().unwrap_or(Duration::from_secs(0)).as_millis() > self.window_size
+		self.window.elapsed().unwrap_or(Duration::from_secs(0)).as_secs() > self.window_size
 	}
 
 	pub fn can_use(&mut self) -> bool {
@@ -52,7 +52,8 @@ impl<'a> Key<'a> {
 
 	pub fn consume<'b>(&'b mut self) -> Option<&'a str> {
 		if self.timeout() {
-			self.window = SystemTime::now()
+			self.window = SystemTime::now();
+			self.uses = 0;
 		}
 
 		if self.can_use() {
@@ -71,7 +72,7 @@ pub struct SkyblockApi<'a> {
 impl<'a> SkyblockApi<'a> {
 	pub fn pooled(keys: Vec<&str>) -> SkyblockApi {
 		SkyblockApi {
-			keys: keys.into_iter().map(|k| Key::new(k, 120, 60_000)).collect(),
+			keys: keys.into_iter().map(|k| Key::new(k, 120, 60)).collect(),
 		}
 	}
 
