@@ -128,19 +128,22 @@ impl<'a> SkyblockApi<'a> {
 			).await?.await?
 	}
 
-	pub async fn get_active_auctions(&mut self) -> BDRes<Vec<Auction>> {
-		let mut p0 = self.get_auctions_page(0).await?;
+	pub async fn iter_active_auctions<F>(&mut self, mut f: F) -> BDRes<()> where
+		F: FnMut(Auction) {
+		let p0 = self.get_auctions_page(0).await?;
 
-		let mut buf = Vec::with_capacity(p0.total_auctions);
-
-		buf.append(&mut p0.auctions);
-
-		for i in 1..p0.total_pages {
-			let mut page = self.get_auctions_page(i).await?;
-			buf.append(&mut page.auctions);
+		for auction in p0.auctions {
+			f(auction);
 		}
 
-		Ok(buf)
+		for i in 1..p0.total_pages {
+			let page = self.get_auctions_page(i).await?;
+			for auction in page.auctions {
+				f(auction);
+			}
+		}
+
+		Ok(())
 	}
 
 	pub async fn get_auctions_page(&mut self, page: usize) -> BDRes<GlobalAuctions> {
