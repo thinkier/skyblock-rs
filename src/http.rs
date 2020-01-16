@@ -128,9 +128,8 @@ impl<'a> SkyblockApi<'a> {
 			).await?.await?
 	}
 
-	pub async fn iter_active_auctions<F, E>(&mut self, mut f: F) -> BDRes<()> where
-		F: FnMut(Auction) -> Result<(), E>,
-		E: Error + 'static {
+	pub async fn iter_active_auctions<F>(&mut self, mut f: F) -> BDRes<()> where
+		F: FnMut(Auction) -> BDRes<()> {
 		let mut i = 0;
 		let mut total_pages = 1usize;
 
