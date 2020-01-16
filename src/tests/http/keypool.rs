@@ -1,6 +1,5 @@
 use crate::http::Key;
 use std::time::{SystemTime, Duration};
-use std::alloc::System;
 use std::thread;
 
 #[test]

@@ -23,13 +23,22 @@ impl fmt::Display for ApiError {
 
 impl Error for ApiError {}
 
-pub(crate) struct Key<'a> {
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Key<'a> {
 	key: &'a str,
+	#[serde(default = "SystemTime::now")]
 	window: SystemTime,
+	#[serde(default)]
 	uses: usize,
+	#[serde(default = "hypixel_api_window_size")]
 	window_size: u64,
+	#[serde(default = "hypixel_api_window_limit")]
 	window_limit: usize,
 }
+
+fn hypixel_api_window_size() -> u64 { 60 }
+
+fn hypixel_api_window_limit() -> usize { 120 }
 
 impl<'a> Key<'a> {
 	pub fn new(key: &'a str, window_limit: usize, window_size: u64) -> Key {
