@@ -8,9 +8,11 @@ extern crate futures;
 extern crate hyper;
 extern crate hyper_tls;
 
-mod http;
+pub mod http;
 #[cfg(test)]
 mod tests;
-mod objects;
+pub mod objects;
 
-pub use http::{SkyblockApi, ApiError};
+pub use http::{SkyblockApi, ApiError, Key};
+pub use objects::auction::{Auction, PartialAuction};
+pub use objects::profile::PartialProfile;
