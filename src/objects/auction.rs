@@ -78,8 +78,8 @@ pub struct Auction {
 	pub uuid: String,
 	pub auctioneer: PartialProfile,
 	pub coop: Vec<PartialProfile>,
-	pub start: u64,
-	pub end: u64,
+	pub start: i64,
+	pub end: i64,
 	#[serde(flatten)]
 	pub item: Item,
 	#[serde(flatten)]
@@ -91,9 +91,9 @@ pub struct Auction {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 pub struct Bids {
 	#[serde(rename = "highest_bid_amount")]
-	pub highest: u64,
+	pub highest: i64,
 	#[serde(rename = "starting_bid")]
-	pub starting: u64,
+	pub starting: i64,
 	pub bids: Vec<Bid>,
 }
 
@@ -101,6 +101,6 @@ pub struct Bids {
 pub struct Bid {
 	pub auction_id: PartialAuction,
 	pub bidder: PartialProfile,
-	pub amount: u64,
-	pub timestamp: u64,
+	pub amount: i64,
+	pub timestamp: i64,
 }
