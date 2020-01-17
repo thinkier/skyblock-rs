@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 #[derive(Deserialize)]
 pub struct PartialNbt {
 	pub i: Vec<PartialNbtElement>,
@@ -20,6 +22,7 @@ pub struct PartialTag {
 #[derive(Deserialize)]
 pub struct PartialExtraAttr {
 	pub id: String,
+	pub enchantments: Option<HashMap<String, i32>>,
 	pub anvil_uses: Option<i8>,
 }
 

@@ -1,0 +1,29 @@
+{
+  "uuid": "1947cd4dd4194987974791074ad66af0",
+  "auctioneer": "149efa03758c4c8a962f47d9f5c27a08",
+  "profile_id": "149efa03758c4c8a962f47d9f5c27a08",
+  "coop": [
+    "149efa03758c4c8a962f47d9f5c27a08"
+  ],
+  "start": 1579028850983,
+  "end": 1579115250983,
+  "item_name": "Spicy Aspect of the Dragons",
+  "item_lore": "§7Damage: §c+245 §e(+20)\n§7Strength: §c+125 §e(+20) §8(Spicy +5)\n§7Crit Chance: §c+1% §8(Spicy +1%)\n§7Crit Damage: §c+100% §8(Spicy +50%)\n§7Attack Speed: §c+10% §8(Spicy +10%)\n\n§9Critical V, §9Cubism V\n§9Ender Slayer V, §9Execute V\n§9Experience III, §9First Strike IV\n§9Giant Killer V, §9Impaling III\n§9Lethality V, §9Life Steal III\n§9Looting IV, §9Luck VI\n§9Scavenger IV, §9Sharpness V\n§9Telekinesis I, §9Thunderlord V\n§9Vampirism V\n\n§b◆ Spirit Rune III\n§8Requires level 12\n\n§6Item Ability: Dragon Rage §e§lRIGHT CLICK\n§7All Monsters in front of you\n§7take §a700§7 damage. Hit\n§7monsters take large knockback.\n§8Mana Cost: §3100\n§8Cooldown: §a5s\n\n§6§lLEGENDARY SCHWERT",
+  "extra": "Spicy Aspect of the Dragons Diamond Sword Impaling Luck Critical Looting Scavenger Ender Slayer Telekinesis Experience Vampirism Life Steal Execute Giant Killer First Strike Thunderlord Sharpness Cubism Lethality",
+  "category": "weapon",
+  "tier": "LEGENDARY",
+  "starting_bid": 7999999,
+  "item_bytes": "H4sIAAAAAAAAAFVU4W7iRhAeAknAOaWnKrqqPbXdVo2UKJecTWK4pOoPCgSsJCQCH6f+Qou9wIrFS73r9PICfYU+Au/Bo/RBqs7a5nLHHzwz38zOzH7fWgAVKHALAApbsMXDwkEBtpsyiXTBgqKm0wqUWBTMwPwKsPc+GseMzulYsEIRKl0esmtBpwqj/1mwG3K1FPQJk25lzMrofQ2v16t6iy7olF2R9So4qV64+M+OTqr2MZxgcKBjFk31LAs71ecwfrw7Gix58ERO3GM4RHAz5po0ZzQK8nLO4eco5/AYjjawz091bPsLoGvnyIbWNJiTwZKxcAP9sqRBAny3Xl2aqjygggzfEGMmY64WZAg/otGOQhaTAU6Pf1m8/ZEFiWYIOEytJYs5LpMRz/NSwDWPlSY4P5+jcwg/o6/DaaTJDRfiUx1vsaSCR1OTBz+h45bpGXr0Uw645ROGZRh2ZiDfGpeUOk3JEQnOOPTSTgcBfcSFY/k8OJjReBkxpUjWgs8Em3N0cEWyRv1ZYsYTMg4Rs4+eIV0seZyND/BqvRr/+8/fuEVuFt9PonRIOMA99tmfCY+ZIoI9MkGcKuLP1quap9mCNMbczHFFWjGdyoj08cLM9a9Xou91uj5p3nrNG9N2vSEEuZOR0ixWhEdkEktclJyQJ5nA9wjQdG5yad220SJhevtnpMu1WVp9sclNcYLGeNI8ksF8jPd/lrZ6RyNKmlJpQ4RzpAx8jd6mlCKUf0XGSV1D9W+wfezwtt1p91qN/h9k0Ox+aPf9MpR6dMHgB4xn7GmoJQvSLvWM5UMqsOCr9kcdU+RezMdIEVWElzOpR0upqZajwAgQz7HKsI/uh9T7u4wSBa8Gfr/d6/jd36r2r63GXaPTNl8WbMe4dKyzM3jw+p6P2UUoQ3khQz7hLIZtZRoqQ0XGfMojn05h933vpnf/oVc2yoeDxuCh3fRH99cjv9setfqNzn3PghdG/kjJBYs0li/znIzmgCKUBBILP3cwEuTqQHO7CLsiYyBaJXwp1IZ0mY1VkU8jlcolS9jTz7Qzj00RLPZJMtlplccN67IUSyDxR8oQPwPsskxyWfjF1GhpNE+1lLsmRnKYYiSXtbKnn8mdgSpqI4jM3glSoedBsRGfsXHFpSTB7f1Sc2rhpe2en1J6EZ5e1Jx3p7Tu1E7rLrVd12X1i6qLHdPokYtRopipvY/XofmCKY1zwUvHflu13zqX5PzKrpHGHcAW7GSPmHl+/wcpQD+rrQUAAA\u003d\u003d",
+  "claimed": false,
+  "claimed_bidders": [],
+  "highest_bid_amount": 7999999,
+  "bids": [
+    {
+      "auction_id": "1947cd4dd4194987974791074ad66af0",
+      "bidder": "c6cf8df7c2d8432e96432829ec6bbfb2",
+      "profile_id": "c6cf8df7c2d8432e96432829ec6bbfb2",
+      "amount": 7999999,
+      "timestamp": 1579058246857
+    }
+  ]
+}

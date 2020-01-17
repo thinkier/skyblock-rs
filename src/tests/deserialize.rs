@@ -23,7 +23,7 @@ fn auction_body() {
 
 #[test]
 fn searched_auctions() {
-	let auction: SearchedAuctions = serde_json::from_str(include_str!("deserialize/searched_auctions.json")).unwrap();
+	let _: SearchedAuctions = serde_json::from_str(include_str!("deserialize/searched_auctions.json")).unwrap();
 }
 
 #[test]
@@ -63,6 +63,18 @@ fn nbt() {
 	let nbt = item.into_nbt().unwrap();
 	assert_eq!(nbt.i[0].count, 10);
 	assert_eq!(nbt.i[0].tag.display.lore.len(), 10);
+}
+
+#[cfg(feature = "nbt")]
+#[test]
+fn enchants() {
+	let enchants = {
+		let aotd: Item = serde_json::from_str(include_str!("deserialize/maxed_aotd.json")).unwrap();
+
+		let nbt = aotd.into_nbt().unwrap();
+		nbt.i[0].tag.extra_attributes.enchantments.clone().unwrap()
+	};
+	assert_eq!(enchants.len(), 17);
 }
 
 #[test]
