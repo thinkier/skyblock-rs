@@ -60,7 +60,7 @@ fn item() {
 fn nbt() {
 	let item: Item = serde_json::from_str(include_str!("deserialize/item.json")).unwrap();
 
-	let nbt = item.into_nbt().unwrap();
+	let nbt = item.to_nbt().unwrap();
 	assert_eq!(nbt.i[0].count, 10);
 	assert_eq!(nbt.i[0].tag.display.lore.len(), 10);
 }
@@ -71,7 +71,7 @@ fn enchants() {
 	let enchants = {
 		let aotd: Item = serde_json::from_str(include_str!("deserialize/maxed_aotd.json")).unwrap();
 
-		let nbt = aotd.into_nbt().unwrap();
+		let nbt = aotd.to_nbt().unwrap();
 		nbt.i[0].tag.extra_attributes.enchantments.clone().unwrap()
 	};
 	assert_eq!(enchants.len(), 17);

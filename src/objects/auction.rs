@@ -39,7 +39,7 @@ use crate::objects::nbt::PartialNbt;
 
 #[cfg(feature = "nbt")]
 impl Item {
-	pub fn into_nbt(self) -> BDRes<PartialNbt> {
+	pub fn to_nbt(&self) -> BDRes<PartialNbt> {
 		let bytes: Result<Vec<u8>, _> = self.bytes.clone().into();
 		let nbt: PartialNbt = from_gzip_reader(io::Cursor::new(bytes?))?;
 		Ok(nbt)
