@@ -30,7 +30,23 @@ pub struct Item {
 	pub bytes: ItemBytes,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[cfg(feature = "nbt")]
+use nbt::from_gzip_reader;
+#[cfg(feature = "nbt")]
+use std::io;
+#[cfg(feature = "nbt")]
+use crate::objects::nbt::PartialNbt;
+
+#[cfg(feature = "nbt")]
+impl Item {
+	pub fn into_nbt(self) -> BDRes<PartialNbt> {
+		let bytes: Result<Vec<u8>, _> = self.bytes.clone().into();
+		let nbt: PartialNbt = from_gzip_reader(io::Cursor::new(bytes?))?;
+		Ok(nbt)
+	}
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 #[serde(untagged)]
 pub enum ItemBytes {
 	T0(ItemBytesT0),
@@ -56,7 +72,7 @@ impl Into<BDRes<Vec<u8>>> for ItemBytes {
 	}
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 #[serde(tag = "type", content = "data")]
 pub enum ItemBytesT0 {
 	#[serde(rename = "0")]

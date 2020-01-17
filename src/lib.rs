@@ -11,6 +11,9 @@ extern crate hyper;
 #[cfg(feature = "client")]
 extern crate hyper_tls;
 
+#[cfg(feature = "nbt")]
+extern crate nbt;
+
 #[cfg(feature = "client")]
 pub mod http;
 #[cfg(test)]

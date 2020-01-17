@@ -1,4 +1,5 @@
-use crate::http::{ApiBody, GlobalAuctions, BDRes, SearchedAuctions};
+use crate::BDRes;
+use crate::http::{ApiBody, GlobalAuctions, SearchedAuctions};
 use crate::objects::auction::*;
 use crate::objects::profile::*;
 
@@ -52,13 +53,16 @@ fn item() {
 	assert_eq!(item.extra, "◆ Ice Rune I Skull Item");
 	assert_eq!(item.lore, "§8Requires level 8\n§8Bows\n\n§7Your arrows are icy cold!\n\n§7Apply this rune to bows or fuse\n§7two together at the Runic\n§7Pedestal!\n\n§9§lRARE");
 	assert_eq!(item.tier, Rarity::Uncommon);
-	{
-		let item_bytes = include_bytes!("deserialize/item_bytes.bin");
-		let mut buf = vec![];
-		buf.extend_from_slice(&item_bytes[..]);
-		let bytes: BDRes<Vec<u8>> = item.bytes.into();
-		assert_eq!(bytes.unwrap(), buf);
-	}
+}
+
+#[cfg(feature = "nbt")]
+#[test]
+fn nbt() {
+	let item: Item = serde_json::from_str(include_str!("deserialize/item.json")).unwrap();
+
+	let nbt = item.into_nbt().unwrap();
+	assert_eq!(nbt.i[0].count, 10);
+	assert_eq!(nbt.i[0].tag.display.lore.len(), 10);
 }
 
 #[test]

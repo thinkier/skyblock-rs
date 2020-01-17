@@ -24,6 +24,11 @@ optional=true
 version="0.4"
 optional=true
 
+[dependencies.hematite-nbt]
+version="*"
+optional=true
+
 [features]
 default=["client"]
 client=["futures", "hyper", "hyper-tls"]
+nbt=["hematite-nbt"]
