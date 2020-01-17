@@ -1,4 +1,4 @@
-use crate::http::BDRes;
+use crate::BDRes;
 use crate::objects::profile::PartialProfile;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]

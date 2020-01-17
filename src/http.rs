@@ -6,10 +6,9 @@ use std::error::Error;
 use std::time::{SystemTime, Duration};
 use std::{thread, fmt};
 use crate::objects::auction::Auction;
+use crate::BDRes;
 
 const BASE_URL: &'static str = "https://api.hypixel.net/skyblock/";
-
-pub type BDRes<T> = Result<T, Box<dyn Error>>;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(transparent)]

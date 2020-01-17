@@ -7,12 +7,23 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-hyper="0.13"
-hyper-tls="0.4"
 serde="*"
-serde_json="*"
 serde_derive="*"
+serde_json="*"
 base64="*"
 
 [dependencies.futures]
 version="0.3"
+optional=true
+
+[dependencies.hyper]
+version="0.13"
+optional=true
+
+[dependencies.hyper-tls]
+version="0.4"
+optional=true
+
+[features]
+default=["client"]
+client=["futures", "hyper", "hyper-tls"]
