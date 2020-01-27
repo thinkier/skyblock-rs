@@ -67,6 +67,16 @@ fn nbt() {
 
 #[cfg(feature = "nbt")]
 #[test]
+fn count() {
+	let mut item: Item = serde_json::from_str(include_str!("deserialize/item.json")).unwrap();
+
+	assert_eq!(item.count, None);
+	assert_eq!(item.count(), 10);
+	assert_eq!(item.count, Some(10));
+}
+
+#[cfg(feature = "nbt")]
+#[test]
 fn enchants() {
 	let enchants = {
 		let aotd: Item = serde_json::from_str(include_str!("deserialize/maxed_aotd.json")).unwrap();

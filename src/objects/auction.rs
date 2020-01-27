@@ -23,6 +23,8 @@ pub struct Item {
 	pub name: String,
 	#[serde(rename = "item_lore")]
 	pub lore: String,
+	#[serde(rename = "item_count", skip_serializing_if = "Option::is_none")]
+	pub count: Option<i8>,
 	pub extra: String,
 	pub category: String,
 	pub tier: Rarity,
@@ -43,6 +45,22 @@ impl Item {
 		let bytes: Result<Vec<u8>, _> = self.bytes.clone().into();
 		let nbt: PartialNbt = from_gzip_reader(io::Cursor::new(bytes?))?;
 		Ok(nbt)
+	}
+
+	pub fn count(&mut self) -> i8 {
+		if let Some(ref count) = &self.count {
+			return *count;
+		}
+
+		if let Ok(nbt) = self.to_nbt() {
+			if let Some(pnbt) = nbt.i.first() {
+				self.count = Some(pnbt.count);
+
+				return pnbt.count;
+			}
+		}
+
+		return 1;
 	}
 }
 
