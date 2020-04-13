@@ -13,6 +13,8 @@ pub enum Rarity {
 	Epic,
 	#[serde(rename = "LEGENDARY")]
 	Legendary,
+	#[serde(rename = "ARTIFACT")]
+	Artifact,
 	#[serde(rename = "SPECIAL")]
 	Special,
 }
