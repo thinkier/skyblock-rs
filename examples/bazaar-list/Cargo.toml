@@ -1,5 +1,5 @@
 [package]
-name = "index-ah"
+name = "bazaar-list"
 version = "0.1.0"
 authors = ["thinkier <26728734+thinkier@users.noreply.github.com>"]
 edition = "2018"

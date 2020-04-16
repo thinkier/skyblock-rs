@@ -1,0 +1,4 @@
+target/
+index.json
+*.iml
+.idea/

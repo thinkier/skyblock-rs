@@ -8,11 +8,16 @@ struct Products {
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
+struct ProductWrapper {
+	pub product_info: Product
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Product {
 	pub product_id: String,
 	pub week_historic: Vec<Historic>,
 	#[serde(flatten)]
-	pub live_data: LiveProductData
+	pub live_data: LiveProductData,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
@@ -115,8 +120,10 @@ impl<'a> SkyblockApi<'a> {
 	}
 
 	pub async fn get_bazaar_product(&mut self, product: &str) -> Result<Product> {
-		let product: ApiBody<Product> = self.get("bazaar/product", vec![("productId", product.to_owned())]).await?;
+		let product: ApiBody<ProductWrapper> = self.get("bazaar/product", vec![("productId", product.to_owned())]).await?;
 
-		product.into()
+		let res: Result<_> = product.into();
+
+		res.map(|wrapped| wrapped.product_info)
 	}
 }
