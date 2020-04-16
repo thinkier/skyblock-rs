@@ -25,5 +25,6 @@ pub use http::{SkyblockApi, ApiError, Key};
 pub use objects::auction::{Auction, PartialAuction};
 pub use objects::profile::PartialProfile;
 use std::error::Error;
+use std::result::Result as StdResult;
 
-pub type BDRes<T> = Result<T, Box<dyn Error>>;
+pub type Result<T> = StdResult<T, Box<dyn Error>>;

@@ -1,4 +1,4 @@
-use crate::BDRes;
+use crate::Result;
 use crate::http::{ApiBody, GlobalAuctions, SearchedAuctions};
 use crate::objects::auction::*;
 use crate::objects::profile::*;
@@ -6,7 +6,7 @@ use crate::objects::profile::*;
 #[test]
 fn auctions_body() {
 	let body: ApiBody<GlobalAuctions> = serde_json::from_str(include_str!("deserialize/auctions_body.json")).unwrap();
-	let res: BDRes<_> = body.into();
+	let res: Result<_> = body.into();
 	let glob_auctions = res.ok().unwrap();
 
 	assert_eq!(glob_auctions, glob_auctions);
@@ -15,7 +15,7 @@ fn auctions_body() {
 #[test]
 fn auction_body() {
 	let body: ApiBody<SearchedAuctions> = serde_json::from_str(include_str!("deserialize/auction_body.json")).unwrap();
-	let res: BDRes<_> = body.into();
+	let res: Result<_> = body.into();
 	let auction = res.ok().unwrap();
 
 	assert_eq!(auction, auction);
@@ -107,7 +107,7 @@ fn bid() {
 #[test]
 fn error_body() {
 	let body: ApiBody<Auction> = serde_json::from_str(include_str!("deserialize/api_error.json")).unwrap();
-	let res: BDRes<_> = body.into();
+	let res: Result<_> = body.into();
 	let err = res.err().unwrap();
 
 	assert_eq!(err.to_string(), "api call failed: No \"key\" provided!");

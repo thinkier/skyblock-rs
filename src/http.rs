@@ -6,7 +6,7 @@ use std::error::Error;
 use std::time::{SystemTime, Duration};
 use std::{thread, fmt};
 use crate::objects::auction::Auction;
-use crate::BDRes;
+use crate::Result;
 
 const BASE_URL: &'static str = "https://api.hypixel.net/skyblock/";
 
@@ -100,7 +100,7 @@ impl<'a> SkyblockApi<'a> {
 		}
 	}
 
-	pub async fn get<T>(&mut self, path: &str, params: Vec<(&str, String)>) -> BDRes<T> where
+	pub async fn get<T>(&mut self, path: &str, params: Vec<(&str, String)>) -> Result<T> where
 		T: for<'de> Deserialize<'de> {
 		let uri: Uri = format!("{}{}?key={}{}", BASE_URL, path, self.get_key_sync(), params.iter()
 			.map(|(k, v)| {
@@ -116,7 +116,7 @@ impl<'a> SkyblockApi<'a> {
 		cli.get(uri)
 			.map_ok(|x| x.into_body())
 			.map_ok(|x| x
-				.fold(Ok(vec![]), |buf: BDRes<_>, chunk| async {
+				.fold(Ok(vec![]), |buf: Result<_>, chunk| async {
 					let mut buf = buf?;
 					buf.extend(&chunk?[..]);
 					Ok(buf)
@@ -127,8 +127,8 @@ impl<'a> SkyblockApi<'a> {
 			).await?.await?
 	}
 
-	pub async fn iter_active_auctions<F>(&mut self, mut f: F) -> BDRes<()> where
-		F: FnMut(Auction) -> BDRes<()> {
+	pub async fn iter_active_auctions<F>(&mut self, mut f: F) -> Result<()> where
+		F: FnMut(Auction) -> Result<()> {
 		let mut i = 0;
 		let mut total_pages = 1usize;
 
@@ -146,7 +146,7 @@ impl<'a> SkyblockApi<'a> {
 		Ok(())
 	}
 
-	pub async fn get_auctions_page(&mut self, page: usize) -> BDRes<GlobalAuctions> {
+	pub async fn get_auctions_page(&mut self, page: usize) -> Result<GlobalAuctions> {
 		let body: ApiBody<GlobalAuctions> = self.get("auctions", vec![("page", format!("{}", page))]).await?;
 		body.into()
 	}
@@ -161,8 +161,8 @@ pub(crate) enum ApiBody<T> {
 	Ok(T),
 }
 
-impl<T> Into<BDRes<T>> for ApiBody<T> {
-	fn into(self) -> BDRes<T> {
+impl<T> Into<Result<T>> for ApiBody<T> {
+	fn into(self) -> Result<T> {
 		match self {
 			Self::Ok(i) => {
 				Ok(i)

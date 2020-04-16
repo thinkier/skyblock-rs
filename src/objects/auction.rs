@@ -1,4 +1,5 @@
-use crate::BDRes;
+use crate::Result;
+use std::result::Result as StdResult;
 use crate::objects::profile::PartialProfile;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -43,8 +44,8 @@ use crate::objects::nbt::PartialNbt;
 
 #[cfg(feature = "nbt")]
 impl Item {
-	pub fn to_nbt(&self) -> BDRes<PartialNbt> {
-		let bytes: Result<Vec<u8>, _> = self.bytes.clone().into();
+	pub fn to_nbt(&self) -> Result<PartialNbt> {
+		let bytes: StdResult<Vec<u8>, _> = self.bytes.clone().into();
 		let nbt: PartialNbt = from_gzip_reader(io::Cursor::new(bytes?))?;
 		Ok(nbt)
 	}
@@ -85,8 +86,8 @@ impl Into<String> for ItemBytes {
 	}
 }
 
-impl Into<BDRes<Vec<u8>>> for ItemBytes {
-	fn into(self) -> BDRes<Vec<u8>> {
+impl Into<Result<Vec<u8>>> for ItemBytes {
+	fn into(self) -> Result<Vec<u8>> {
 		let b64: String = self.into();
 		Ok(base64::decode(&b64)?)
 	}
