@@ -1,3 +1,5 @@
+#[cfg(feature = "nbt")]
+use std::result::Result as StdResult;
 use crate::Result;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
