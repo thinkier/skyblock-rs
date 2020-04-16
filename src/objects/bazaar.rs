@@ -10,10 +10,16 @@ struct Products {
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Product {
 	pub product_id: String,
+	pub week_historic: Vec<Historic>,
+	#[serde(flatten)]
+	pub live_data: LiveProductData
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
+pub struct LiveProductData {
 	pub buy_summary: Vec<Order>,
 	pub sell_summary: Vec<Order>,
 	pub quick_status: QuickStatus,
-	pub week_historic: Vec<Historic>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
