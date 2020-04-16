@@ -1,0 +1,11 @@
+{
+  "item_name": "◆ Ice Rune I",
+  "item_lore": "§8Requires level 8\n§8Bows\n\n§7Your arrows are icy cold!\n\n§7Apply this rune to bows or fuse\n§7two together at the Runic\n§7Pedestal!\n\n§9§lRARE",
+  "extra": "◆ Ice Rune I Skull Item",
+  "category": "misc",
+  "tier": "UNCOMMON",
+  "item_bytes": {
+    "type": 0,
+    "data": "H4sIAAAAAAAAAD1SS47aQBAtPpMBK1IUZZtFJ8oWCRgY8CILBggYYXvw8LN3/pSxcRsTuz1gHyC7rHMELpATcJQcJEqbRVpqteq9qtf1EwDqUPIFACiVoew7pZ8luBtG6YEJAlSYuatDFQ+2B8WpQH3qO/iNmruEm38FEF6ClFL1dMC4BmXJgS8oulbfbJkNsd3tNR5c221Yrthp9FqO3bLFtu1aLo97jqMjxszHpA41hmeWxpjc0qjB3dqkKcJvzGZNY+s1ne2M2pn0yO3lS5Oq0v7Ykw7rzBpKj1LI+elTrvr9V2ey7jjTdWZs5dTa0NTYKJm+MZrzsEudofhfa95WAj1fPei53dI3WijnlOq5EcqT1UldjtvyaNE1JouusrfPxjLo6EvPkzcrjg/O8kijKr/KftHS86CjjoKWPJkFSjYT3W3zK69AgHvHT47UzHjv5lGMtRv44Xrpa/g99XmhhOIrUtKHew4+Raeimx+vl54epTEx45gj/EHi2xmxI+p84vxnzg+OR5oR5vkJidMDEhYRq/CNYuKmCd402Cni+A6Zh1yLcW8kWnrwbXjL2Wd0MGEmLRSF60W8Xqg20MY1qCpmiPD+enH//PpBJPsWhETimb8bn1lsDhiLfStlxZjuit+TClSk4biYGdSK3YGqtlK4XYY3IzM0d8gXBv4B8KeqSGICAAA\u003d"
+  }
+}

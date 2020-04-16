@@ -22,8 +22,7 @@ pub mod objects;
 
 #[cfg(feature = "client")]
 pub use http::{SkyblockApi, ApiError, Key};
-pub use objects::auction::{Auction, PartialAuction};
-pub use objects::profile::PartialProfile;
+pub use objects::*;
 use std::error::Error;
 use std::result::Result as StdResult;
 

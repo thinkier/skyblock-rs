@@ -5,7 +5,6 @@ use serde::Deserialize;
 use std::error::Error;
 use std::time::{SystemTime, Duration};
 use std::{thread, fmt};
-use crate::objects::auction::Auction;
 use crate::Result;
 
 const BASE_URL: &'static str = "https://api.hypixel.net/skyblock/";
@@ -126,30 +125,6 @@ impl<'a> SkyblockApi<'a> {
 				)
 			).await?.await?
 	}
-
-	pub async fn iter_active_auctions<F>(&mut self, mut f: F) -> Result<()> where
-		F: FnMut(Auction) -> Result<()> {
-		let mut i = 0;
-		let mut total_pages = 1usize;
-
-		while i < total_pages {
-			let page = self.get_auctions_page(i).await?;
-			total_pages = page.total_pages;
-
-			for auction in page.auctions {
-				f(auction)?;
-			}
-
-			i += 1;
-		}
-
-		Ok(())
-	}
-
-	pub async fn get_auctions_page(&mut self, page: usize) -> Result<GlobalAuctions> {
-		let body: ApiBody<GlobalAuctions> = self.get("auctions", vec![("page", format!("{}", page))]).await?;
-		body.into()
-	}
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -172,21 +147,4 @@ impl<T> Into<Result<T>> for ApiBody<T> {
 			}
 		}
 	}
-}
-
-#[derive(Serialize, Deserialize, Debug, Eq, PartialEq)]
-pub struct GlobalAuctions {
-	pub page: usize,
-	#[serde(rename = "totalPages")]
-	pub total_pages: usize,
-	#[serde(rename = "totalAuctions")]
-	pub total_auctions: usize,
-	#[serde(rename = "lastUpdated")]
-	pub last_update: u64,
-	pub auctions: Vec<Auction>,
-}
-
-#[derive(Serialize, Deserialize, Debug, Eq, PartialEq)]
-pub struct SearchedAuctions {
-	pub auctions: Vec<Auction>,
 }
