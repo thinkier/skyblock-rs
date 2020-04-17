@@ -15,13 +15,14 @@ extern crate hyper_tls;
 extern crate nbt;
 
 #[cfg(feature = "client")]
-pub mod http;
+pub mod client;
 #[cfg(test)]
 mod tests;
 pub mod objects;
+pub mod methods;
 
 #[cfg(feature = "client")]
-pub use http::{SkyblockApi, ApiError, Key};
+pub use client::{SkyblockApi, ApiError, Key};
 pub use objects::*;
 use std::error::Error;
 use std::result::Result as StdResult;

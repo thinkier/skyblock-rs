@@ -1,4 +1,4 @@
-use crate::http::Key;
+use crate::client::Key;
 use std::time::{SystemTime, Duration};
 use std::thread;
 

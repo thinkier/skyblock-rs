@@ -1,5 +1,5 @@
 use crate::Result;
-use crate::http::ApiBody;
+use crate::client::ApiBody;
 use crate::objects::*;
 
 #[test]
