@@ -106,7 +106,7 @@ pub struct Order {
 	#[serde(rename = "pricePerUnit")]
 	pub price_per_unit: f32,
 	/// The number of orders associated with this price
-	pub orders: usize,
+	pub orders: i32,
 }
 
 impl<'a> SkyblockApi<'a> {
