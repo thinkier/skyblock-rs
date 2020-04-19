@@ -19,6 +19,7 @@ pub mod client;
 #[cfg(test)]
 mod tests;
 pub mod objects;
+#[cfg(feature = "client")]
 pub mod methods;
 
 #[cfg(feature = "client")]
