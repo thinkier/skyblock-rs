@@ -1,5 +1,6 @@
 #[cfg(feature = "nbt")]
 use std::result::Result as StdResult;
+#[cfg(feature = "bytes")]
 use crate::Result;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -31,6 +32,7 @@ pub struct Item {
 	pub extra: String,
 	pub category: String,
 	pub tier: Rarity,
+	#[cfg(feature = "bytes")]
 	#[serde(rename = "item_bytes")]
 	pub bytes: ItemBytes,
 }
@@ -67,6 +69,7 @@ impl Item {
 	}
 }
 
+#[cfg(feature = "bytes")]
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 #[serde(untagged)]
 pub enum ItemBytes {
@@ -74,6 +77,7 @@ pub enum ItemBytes {
 	Data(String),
 }
 
+#[cfg(feature = "bytes")]
 impl Into<String> for ItemBytes {
 	fn into(self) -> String {
 		match self {
@@ -86,6 +90,7 @@ impl Into<String> for ItemBytes {
 	}
 }
 
+#[cfg(feature = "bytes")]
 impl Into<Result<Vec<u8>>> for ItemBytes {
 	fn into(self) -> Result<Vec<u8>> {
 		let b64: String = self.into();
@@ -93,6 +98,7 @@ impl Into<Result<Vec<u8>>> for ItemBytes {
 	}
 }
 
+#[cfg(feature = "bytes")]
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 #[serde(tag = "type", content = "data")]
 pub enum ItemBytesT0 {

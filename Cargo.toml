@@ -10,7 +10,10 @@ edition = "2018"
 serde="*"
 serde_derive="*"
 serde_json="*"
-base64="*"
+
+[dependencies.base64]
+version="*"
+optional=true
 
 [dependencies.futures]
 version="0.3"
@@ -31,4 +34,5 @@ optional=true
 [features]
 default=["client"]
 client=["futures", "hyper", "hyper-tls"]
-nbt=["hematite-nbt"]
+nbt=["hematite-nbt", "bytes"]
+bytes=["base64"]

@@ -1,3 +1,4 @@
+#[cfg(feature = "bytes")]
 extern crate base64;
 extern crate serde;
 #[macro_use]
