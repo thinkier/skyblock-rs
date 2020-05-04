@@ -1,15 +1,26 @@
+/// The ID of the product in question
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Product {
+	/// The ID of the product retrieved
 	pub product_id: String,
+	/// The weekly historic data of the product.
+	/// Note: This field is associated with deprecated endpoints
+	#[deprecated]
+	#[serde(skip_serializing_if = "Option::is_none")]
 	pub week_historic: Option<Vec<Historic>>,
+	/// The current, live data of the bazaar product
 	#[serde(flatten)]
 	pub live_data: LiveProductData,
 }
 
+/// Current, live data of the auction
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct LiveProductData {
+	/// List of the top (up to 30) buy orders
 	pub buy_summary: Vec<Order>,
+	/// List of the top (up to 30) sell offers
 	pub sell_summary: Vec<Order>,
+	/// The current quick stats of a bazaar item
 	pub quick_status: QuickStatus,
 }
 
@@ -75,11 +86,13 @@ pub struct Historic {
 }
 
 impl Historic {
-	pub fn instant_buy_price(&self) -> f32 {
+	/// Calculate the instant buy price by recent sales
+	pub fn recent_instant_buy_price(&self) -> f32 {
 		self.sell_coins / self.sell_volume
 	}
 
-	pub fn instant_sell_price(&self) -> f32 {
+	/// Calculate the instant sell price by recent purchases
+	pub fn recent_instant_sell_price(&self) -> f32 {
 		self.buy_coins / self.buy_volume
 	}
 }

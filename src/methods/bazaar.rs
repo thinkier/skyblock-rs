@@ -1,6 +1,6 @@
 use crate::{Result, SkyblockApi, Product};
 use crate::client::ApiBody;
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 struct Products {
@@ -15,10 +15,11 @@ struct ProductWrapper {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 struct UnifiedListing {
-	pub products: BTreeMap<String, Product>
+	pub products: HashMap<String, Product>
 }
 
 impl<'a> SkyblockApi<'a> {
+	/// Deprecated function to fetch a list of available Product IDs from the API.
 	#[deprecated]
 	pub async fn get_bazaar_products(&mut self) -> Result<Vec<String>> {
 		let products: ApiBody<Products> = self.get("bazaar/products", vec![]).await?;
@@ -29,7 +30,9 @@ impl<'a> SkyblockApi<'a> {
 		}
 	}
 
-	pub async fn get_bazaar_product_listing(&mut self) -> Result<BTreeMap<String, Product>> {
+	/// Fetch all Bazaar products and their current state.
+	/// This endpoint returns a `None` in the `week_historic` field.
+	pub async fn get_bazaar_product_listing(&mut self) -> Result<HashMap<String, Product>> {
 		let products: ApiBody<UnifiedListing> = self.get("bazaar", vec![]).await?;
 
 		match products.into() {
@@ -38,6 +41,7 @@ impl<'a> SkyblockApi<'a> {
 		}
 	}
 
+	/// Fetch a particular Bazaar product and return their current state.
 	#[deprecated]
 	pub async fn get_bazaar_product(&mut self, product: &str) -> Result<Product> {
 		let product: ApiBody<ProductWrapper> = self.get("bazaar/product", vec![("productId", product.to_owned())]).await?;
