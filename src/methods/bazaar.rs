@@ -13,6 +13,7 @@ struct ProductWrapper {
 }
 
 impl<'a> SkyblockApi<'a> {
+	// TODO: https://github.com/HypixelDev/PublicAPI/blob/master/Documentation/methods/skyblock/bazaar.md
 	pub async fn get_bazaar_products(&mut self) -> Result<Vec<String>> {
 		let products: ApiBody<Products> = self.get("bazaar/products", vec![]).await?;
 
@@ -20,13 +21,5 @@ impl<'a> SkyblockApi<'a> {
 			Ok(prods) => Ok(prods.product_ids),
 			Err(cause) => Err(cause)
 		}
-	}
-
-	pub async fn get_bazaar_product(&mut self, product: &str) -> Result<Product> {
-		let product: ApiBody<ProductWrapper> = self.get("bazaar/product", vec![("productId", product.to_owned())]).await?;
-
-		let res: Result<_> = product.into();
-
-		res.map(|wrapped| wrapped.product_info)
 	}
 }
