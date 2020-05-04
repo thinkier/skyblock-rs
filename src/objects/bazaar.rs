@@ -1,7 +1,7 @@
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Product {
 	pub product_id: String,
-	pub week_historic: Vec<Historic>,
+	pub week_historic: Option<Vec<Historic>>,
 	#[serde(flatten)]
 	pub live_data: LiveProductData,
 }

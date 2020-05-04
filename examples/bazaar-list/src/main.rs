@@ -11,11 +11,9 @@ async fn main() -> Result<()> {
 	let api_key = env::var("API_KEY")?;
 	let mut api = SkyblockApi::singleton(&api_key);
 
-	let products = api.get_bazaar_products().await?;
+	let products = api.get_bazaar_product_listing().await?;
 
 	println!("Products: {:?}", products);
-
-	println!("Example Product (Superior Drag Frags):\n{:?}", api.get_bazaar_product("SUPERIOR_FRAGMENT").await?);
 
 	Ok(())
 }
