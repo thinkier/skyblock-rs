@@ -1,6 +1,6 @@
 [package]
 name = "skyblock-rs"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["thinkier <26728734+thinkier@users.noreply.github.com>"]
 edition = "2018"
 license = "MIT"
@@ -12,7 +12,9 @@ exclude = ["env.sh", "docker-compose.yml"]
 [dependencies]
 serde="1.0"
 serde_derive="1.0"
-serde_json="1.0"
+
+[dependencies.serde_json]
+version="1.0"
 
 [dependencies.base64]
 version="0.12"
