@@ -1,17 +1,17 @@
 use crate::objects::profile::PartialProfile;
 use crate::objects::items::Item;
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 pub struct Claim {
 	pub claimed: bool,
 	// pub claimed_bidders: Vec<String>, // TODO
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 #[serde(transparent)]
 pub struct PartialAuction(pub String);
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 pub struct Auction {
 	/// Hypixel's auction UUID, this can be utilized with the in-game command
 	/// `/viewauction <uuid>`.
@@ -38,7 +38,7 @@ pub struct Auction {
 }
 
 /// A collection of bidding data.
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 pub struct Bids {
 	/// The current highest price on the auction item
 	#[serde(rename = "highest_bid_amount")]
@@ -51,7 +51,7 @@ pub struct Bids {
 }
 
 /// A discrete bid on an item.
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 pub struct Bid {
 	/// The auction which this bid belongs to.
 	pub auction_id: PartialAuction,
@@ -64,7 +64,7 @@ pub struct Bid {
 }
 
 /// A page of auctions retrieved by the `skyblock/auctions` endpoint.
-#[derive(Serialize, Deserialize, Debug, Eq, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, Eq, PartialEq, Clone)]
 pub struct GlobalAuctions {
 	/// The current page fetched
 	pub page: usize,
@@ -83,7 +83,7 @@ pub struct GlobalAuctions {
 
 /// An auction that had been searched by UUID.
 #[cfg(test)]
-#[derive(Serialize, Deserialize, Debug, Eq, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, Eq, PartialEq, Clone)]
 pub struct SearchedAuctions {
 	pub auctions: Vec<Auction>,
 }

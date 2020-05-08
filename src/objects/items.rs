@@ -3,7 +3,7 @@ use std::result::Result as StdResult;
 #[cfg(feature = "bytes")]
 use crate::Result;
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Rarity {
 	#[serde(rename = "COMMON")]
 	Common,
@@ -23,7 +23,7 @@ pub enum Rarity {
 	Special,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 pub struct Item {
 	/// The name of an item
 	/// Does not include minecraft colour codes.

@@ -1,5 +1,5 @@
 /// The ID of the product in question
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct Product {
 	/// The ID of the product retrieved
 	pub product_id: String,
@@ -14,7 +14,7 @@ pub struct Product {
 }
 
 /// Current, live data of the auction
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct LiveProductData {
 	/// List of the top (up to 30) buy orders
 	pub buy_summary: Vec<Order>,
@@ -24,7 +24,7 @@ pub struct LiveProductData {
 	pub quick_status: QuickStatus,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct QuickStatus {
 	#[serde(rename = "productId")]
 	pub product_id: String,
@@ -54,7 +54,7 @@ pub struct QuickStatus {
 	pub sell_orders: f32,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct Historic {
 	#[serde(rename = "productId")]
 	pub product_id: String,
@@ -97,7 +97,7 @@ impl Historic {
 	}
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct Order {
 	/// Total amount of items in the orders involved
 	pub amount: i32,
