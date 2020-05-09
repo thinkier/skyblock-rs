@@ -40,7 +40,7 @@ impl LiveProductData {
 	pub fn top_sell(&self) -> f32 {
 		let mut top = f32::INFINITY;
 
-		for order in &self.buy_summary {
+		for order in &self.sell_summary {
 			if top > order.price_per_unit {
 				top = order.price_per_unit
 			}
