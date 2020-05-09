@@ -24,6 +24,32 @@ pub struct LiveProductData {
 	pub quick_status: QuickStatus,
 }
 
+impl LiveProductData {
+	pub fn top_buy(&self) -> f32 {
+		let mut top = f32::NEG_INFINITY;
+
+		for order in &self.buy_summary {
+			if top < order.price_per_unit {
+				top = order.price_per_unit
+			}
+		}
+
+		return top;
+	}
+
+	pub fn top_sell(&self) -> f32 {
+		let mut top = f32::INFINITY;
+
+		for order in &self.buy_summary {
+			if top > order.price_per_unit {
+				top = order.price_per_unit
+			}
+		}
+
+		return top;
+	}
+}
+
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct QuickStatus {
 	#[serde(rename = "productId")]
