@@ -25,8 +25,8 @@ pub struct LiveProductData {
 }
 
 impl LiveProductData {
-	pub fn top_buy(&self) -> f32 {
-		let mut top = f32::NEG_INFINITY;
+	pub fn top_buy(&self) -> f64 {
+		let mut top = f64::NEG_INFINITY;
 
 		for order in &self.buy_summary {
 			if top < order.price_per_unit {
@@ -37,8 +37,8 @@ impl LiveProductData {
 		return top;
 	}
 
-	pub fn top_sell(&self) -> f32 {
-		let mut top = f32::INFINITY;
+	pub fn top_sell(&self) -> f64 {
+		let mut top = f64::INFINITY;
 
 		for order in &self.sell_summary {
 			if top > order.price_per_unit {
@@ -129,7 +129,7 @@ pub struct Order {
 	pub amount: i32,
 	/// The price of the transaction for each item in the order
 	#[serde(rename = "pricePerUnit")]
-	pub price_per_unit: f32,
+	pub price_per_unit: f64,
 	/// The number of orders associated with this price
 	pub orders: i32,
 }
